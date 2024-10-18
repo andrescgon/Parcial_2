@@ -1,3 +1,0 @@
-t = 1; // Definir el valor de t
-Laplace(sin(t));
-Laplace(exp(-t));

@@ -1,0 +1,11 @@
+IDENTIFIER=1
+NUMBER=2
+LPAREN=3
+RPAREN=4
+INT=5
+DT=6
+WS=7
+'('=3
+')'=4
+'int'=5
+'dt'=6

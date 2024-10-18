@@ -3,8 +3,17 @@ from antlr4 import InputStream, CommonTokenStream
 from MapFunctionLexer import MapFunctionLexer
 from MapFunctionParser import MapFunctionParser
 
+def format_operation(operation):
+    """
+    Añade espacios entre los operadores relacionales y booleanos.
+    """
+    operators = ['>', '<', '>=', '<=', '==', '!=', 'and', 'or']
+    for op in operators:
+        operation = operation.replace(op, f' {op} ')
+    return operation
+
 def main():
-    input_str = input("Ingrese una expresión en el formato MAP(funcion, iterable): ")
+    input_str = input("Ingrese una expresión en el formato MAP/FILTER(funcion, iterable): ")
     
     input_stream = InputStream(input_str)
     lexer = MapFunctionLexer(input_stream)
@@ -13,13 +22,22 @@ def main():
     
     tree = parser.expr()
 
+    # Identificar si es MAP o FILTER
+    map_or_filter = tree.mapFunction().getChild(0).getText()
+
     # Extraer el nombre de la función o expresión lambda
     function_node = tree.mapFunction().functionCall()
-    
-    if function_node.lambdaExpr():
+
+    if function_node.getText() == 'None':
+        # Usar 'None' como una función que filtra los valores True
+        func = None
+    elif function_node.lambdaExpr():
         # Extraer la expresión lambda
         param = function_node.lambdaExpr().IDENTIFIER().getText()
-        operation = function_node.lambdaExpr().exprBody().getText()
+        operation = function_node.lambdaExpr().booleanExpr().getText()
+        
+        # Formatear la operación para incluir espacios
+        operation = format_operation(operation)
         func = eval(f"lambda {param}: {operation}")
     else:
         # Extraer una función estándar
@@ -34,14 +52,17 @@ def main():
         print(f"Error al evaluar el iterable: {e}")
         return
 
-    # Aplicar la función utilizando map()
+    # Aplicar la función utilizando map() o filter()
     try:
-        result = list(map(func, iterable))
+        if map_or_filter == 'MAP':
+            result = list(map(func, iterable))
+        elif map_or_filter == 'FILTER':
+            result = list(filter(func, iterable))
     except Exception as e:
         print(f"Error al aplicar la función: {e}")
         return
     
-    print('Iterable',iterable,'Resultado',result)
+    print('Iterable:', iterable, 'Resultado:', result)
 
 if __name__ == '__main__':
     main()

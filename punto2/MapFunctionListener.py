@@ -44,12 +44,30 @@ class MapFunctionListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MapFunctionParser#booleanExpr.
+    def enterBooleanExpr(self, ctx:MapFunctionParser.BooleanExprContext):
+        pass
+
+    # Exit a parse tree produced by MapFunctionParser#booleanExpr.
+    def exitBooleanExpr(self, ctx:MapFunctionParser.BooleanExprContext):
+        pass
+
+
     # Enter a parse tree produced by MapFunctionParser#exprBody.
     def enterExprBody(self, ctx:MapFunctionParser.ExprBodyContext):
         pass
 
     # Exit a parse tree produced by MapFunctionParser#exprBody.
     def exitExprBody(self, ctx:MapFunctionParser.ExprBodyContext):
+        pass
+
+
+    # Enter a parse tree produced by MapFunctionParser#relOp.
+    def enterRelOp(self, ctx:MapFunctionParser.RelOpContext):
+        pass
+
+    # Exit a parse tree produced by MapFunctionParser#relOp.
+    def exitRelOp(self, ctx:MapFunctionParser.RelOpContext):
         pass
 
 
@@ -86,6 +104,15 @@ class MapFunctionListener(ParseTreeListener):
 
     # Exit a parse tree produced by MapFunctionParser#dictionary.
     def exitDictionary(self, ctx:MapFunctionParser.DictionaryContext):
+        pass
+
+
+    # Enter a parse tree produced by MapFunctionParser#listElement.
+    def enterListElement(self, ctx:MapFunctionParser.ListElementContext):
+        pass
+
+    # Exit a parse tree produced by MapFunctionParser#listElement.
+    def exitListElement(self, ctx:MapFunctionParser.ListElementContext):
         pass
 
 

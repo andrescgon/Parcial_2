@@ -3,30 +3,31 @@ grammar MapFunction;
 // Reglas del parser
 expr: mapFunction EOF;
 
-mapFunction: 'MAP' '(' functionCall ',' iterable ')';
+mapFunction: ('MAP' | 'FILTER') '(' functionCall ',' iterable ')';
 
-functionCall: IDENTIFIER | lambdaExpr;
+functionCall: 'None' | IDENTIFIER | lambdaExpr;
 
-lambdaExpr: 'lambda' IDENTIFIER ':' exprBody;
+lambdaExpr: 'lambda' IDENTIFIER ':' booleanExpr;
 
-exprBody: IDENTIFIER OP NUMBER | IDENTIFIER '.' IDENTIFIER '(' ')';
+booleanExpr: exprBody (('and' | 'or') exprBody)*;
 
-iterable: list | tuple | dictionary; // Agregar diccionario a las opciones
+exprBody: IDENTIFIER relOp NUMBER;
 
-list: '[' NUMBER (',' NUMBER)* ']' | '[' '\'' IDENTIFIER '\'' (',' '\'' IDENTIFIER '\'' )* ']';
-tuple: '(' NUMBER (',' NUMBER)* ')' | '(' '\'' IDENTIFIER '\'' (',' '\'' IDENTIFIER '\'' )* ')';
-dictionary: '{' pair (',' pair)* '}'; // Nueva regla para diccionarios
+relOp: '>' | '<' | '>=' | '<=' | '==' | '!=';
 
-pair: '\''IDENTIFIER '\'' ':' (NUMBER | '\'' IDENTIFIER '\'' ); // Clave: valor, donde el valor puede ser un número o un identificador
+iterable: list | tuple | dictionary;
+
+list: '[' listElement (',' listElement)* ']';
+tuple: '(' listElement (',' listElement)* ')';
+dictionary: '{' pair (',' pair)* '}';
+
+listElement: NUMBER | IDENTIFIER | 'None' | 'True' | 'False' | STRING | '""';
+
+pair: STRING ':' (NUMBER | STRING | 'None' | 'True' | 'False');
 
 // Reglas del lexer
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 OP: '*' | '+' | '-' | '/' | '^' | '**';
 NUMBER: [0-9]+;
-
-// Ignorar espacios
+STRING: '\'' [a-zA-Z_0-9]* '\''; // Para cadenas
 WS: [ \t\r\n]+ -> skip;
-
-
-
-
