@@ -1,0 +1,13 @@
+T__0=1
+FUNC=2
+NUM=3
+ID=4
+OP=5
+LPAR=6
+RPAR=7
+SEMI=8
+WS=9
+'Laplace'=1
+'('=6
+')'=7
+';'=8
