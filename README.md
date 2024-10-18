@@ -10,14 +10,8 @@ Este documento te guiará a través de la instalación de ANTLR, la configuraci�
 ## Instalación de ANTLR
 
 1. **Descargar ANTLR:**
-   - Ve a la página oficial de ANTLR: [ANTLR Releases](https://www.antlr.org/download.html).
-   - Descarga el archivo JAR más reciente, por ejemplo: `antlr-4.x-complete.jar`.
-
-2. **Configurar ANTLR en tu sistema:**
-   - Crea un directorio para ANTLR, por ejemplo `~/antlr`.
-   - Mueve el archivo JAR descargado a ese directorio.
-
-3. **Crear un alias para ANTLR:**
+   - sudo wget https://www.antlr.org/download/antlr-4.13.2-complete.jar -O /usr/local/lib/antlr-4.13.2-complete.j
+2. **Crear un alias para ANTLR:**
    - Abre tu terminal y edita el archivo de configuración de tu shell (por ejemplo, `~/.bashrc` o `~/.zshrc`).
    - Añade la siguiente línea:
      ```bash
