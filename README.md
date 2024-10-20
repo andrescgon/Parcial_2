@@ -33,7 +33,23 @@ Este documento te guiará a través de la instalación de ANTLR, la configuraci�
    pip install antlr4-python3-runtime
    ```
 
-## Ejecución del programa
+## Ejecución del programa, Punto 1
+
+1. **Ejecuta el programa:** 
+   Asegúrate de que estás en el mismo directorio donde se encuentran `main.py` y los archivos generados por ANTLR. Luego ejecuta:
+   ```bash
+   python main.py
+   ```
+2. **Ingresa una expresión racional:**
+   Cuando se te pida, "Ingresa una expresión racional: ", pruebelo con un ejemplo como:
+   ```bash
+   (2/3 + 1/3)
+   ```
+   y le deberia dar como resultado:
+   ```bash
+   3/3
+   ```
+## Ejecución del programa, Punto 2
 
 1. **Ejecuta el programa:**
    Asegúrate de que estás en el mismo directorio donde se encuentran `main.py` y los archivos generados por ANTLR. Luego ejecuta:
@@ -41,6 +57,27 @@ Este documento te guiará a través de la instalación de ANTLR, la configuraci�
    python main.py
    ```
 2. **Ingresa una expresión racional:**
-   Cuando se te pida, ingresa una expresión como `(1/3 + 2/3)` y observa cómo se procesa.
+   Cuando se te pida, "Ingrese una expresión en el formato MAP/FILTER(funcion, iterable): ", pruebelo con un ejemplo como:
+   ```bash
+   MAP(lambda x: x*2, [1,2,3])
+   ```
+   El resultado :
+   ```bash
+   Iterable: [1,2,3] Resultado: [2,4,6]
+    ```
+## Ejecución del programa, Punto 3
 
-
+1. **Ejecuta el programa:**
+   Asegúrate de que estás en el mismo directorio donde se encuentran `main.py` y los archivos generados por ANTLR. Luego ejecuta:
+   ```bash
+   python main.py
+   ```
+2. **Ingresa una expresión racional:**
+   Cuando se te pida, "Ingrese la función para la que desea calcular la transformada de Laplace: ", pruebelo con un ejemplo como:
+   ```bash
+   t^2
+   ```
+   El resultado :
+   ```bash
+   2/s^3
+    ```
